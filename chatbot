@@ -1,0 +1,40 @@
+# Import the necessary modules and libraries
+import re
+import random
+
+# Define a list of responses that the chatbot can use
+responses = [
+    "I'm sorry, I don't understand what you mean.",
+    "Could you please rephrase that?",
+    "I'm not sure I understand. Could you explain it in a different way?",
+    "I'm sorry, I'm not able to help with that."
+]
+
+# Define a function to handle user input
+def handle_input(user_input):
+    # Use regular expressions to identify common patterns in the user's input
+    if re.search(r'hello|hi|hey', user_input, re.IGNORECASE):
+        return "Hello there! How can I help you?"
+    elif re.search(r'bye|goodbye|see ya', user_input, re.IGNORECASE):
+        return "Goodbye! It was nice chatting with you."
+    else:
+        # If the user's input doesn't match any known patterns, return a random response from the list
+        return random.choice(responses)
+
+# Define a function to run the chatbot
+def run_chatbot():
+    # Print a welcome message
+    print("Welcome to the chatbot! Type 'bye' to exit.")
+    
+    # Run an infinite loop to handle user input
+    while True:
+        # Get user input and print the chatbot's response
+        user_input = input("> ")
+        print(handle_input(user_input))
+        
+        # If the user inputs "bye", exit the loop
+        if re.search(r'bye', user_input, re.IGNORECASE):
+            break
+
+# Run the chatbot
+run_chatbot()
